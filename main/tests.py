@@ -24,6 +24,9 @@ class mainTest(TestCase):
         self.assertEqual(obsidian.amount, 64)
         self.assertEqual(diamond.amount, 32)
 
+# Source
+# 1. https://docs.djangoproject.com/en/4.2/topics/testing/overview/
+# 2. https://minecraft.fandom.com/wiki/
 
 
     
