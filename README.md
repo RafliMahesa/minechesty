@@ -1,10 +1,19 @@
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+   
 - [x] Membuat sebuah proyek Django baru. <br>
 
 + Membuat direktori minechesty
 + Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah `python -m venv env` 
 + Mengaktifkan virtual environment dengan perintah `env\Scripts\activate.bat` 
-+ Pada direktori yang sama buat `requirements.txt` dan tambahkan beberapa dependencies 
++ Pada direktori yang sama buat `requirements.txt` dan tambahkan beberapa dependencies
+```
+django
+gunicorn
+whitenoise
+psycopg2-binary
+requests
+urllib3
+``` 
 + Pasang dependencies dengan perintah `pip install -r requirements.txt` 
 + Buat proyek Django bernama minechesty dengan perintah `django-admin startproject minechesty .` 
 + Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment 
@@ -18,7 +27,8 @@
 + Untuk menghentikan server tekan Ctrl+C (Windows/Linux) 
 + Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan 
 
-- [x] Membuat aplikasi dengan nama `main` pada proyek minechesty. 
+- [x] Membuat aplikasi dengan nama `main` pada proyek minechesty.
+      
 + Membuat aplikasi "main" dengan perintah `python manage.py startapp main`
 + Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan `main` ke dalam variable INSTALLED_APPS 
 ```
@@ -28,6 +38,84 @@
           ... 
       ]
 ```
+- [x] Melakukan routing pada proyek agar dapat menjalankan aplikasi `main`.
+      
++ Buatlah berkas `urls.py` di dalam direktori `main`.
++ Isilah `urls.py` dengan kode
+```
+from django.urls import path
+from main.views import show_main
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+]
+```
++ Buka berkas `urls.py` di dalam direktori proyek `minechesty`
++ Impor fungsi `include` dari `django.urls`
+```
+...
+from django.urls import path, include
+...
+```
++ Tambahkan rute URL seperti berikut untuk mengarahkan ke tampilan main di dalam variabel urlpatterns
+```
+urlpatterns = [
+    ...
+    path('main/', include('main.urls')),
+    ...
+]
+```
+
+- [x] Membuat model pada aplikasi main.
+      
++ Membuka `models.py` dan membuat model Item serta beberapa atribut.
+```
+from django.db import models
+
+class Item(models.Model):
+    name = models.CharField(max_length=255)
+    amount = models.IntegerField()
+    description = models.TextField()
+    rarity = models.TextField(default='uncommon', editable=False)
+```
++ Migrasi model
+```
+python manage.py makemigrations
+```
++ Migrasi ke dalam basis data lokal
+```
+python manage.py migrate
+```
+
+- [x] Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas
++ Buka berkas `views.py` pada direktori aplikasi `main`
++ Menambahkan pasangan key-value yang dibutuhkan dalam variabel context pada `views.py`
+```
+from django.shortcuts import render
+
+def show_main(request):
+    context = {
+        'name': 'Muhammad Rafli Mahesa',
+        'class': 'PBP E'
+    }
+
+    return render(request, "main.html", context)
+```
++ Membuat direktori `templates` pada direktori `main` lalu membuat berkas `main.html` di dalamnya.
++ Isilah sesuai dengan nama aplikasi, nama, dan kelas
+```
+<h1>MineChesty</h1>
+
+<h5>Name: </h5>
+<p>{{ name }}<p>
+<h5>Class: </h5>
+<p>{{ class }}<p>
+```
+
+- [x] Membuat sebuah routing pada `urls.py` aplikasi `main` untuk memetakan fungsi yang telah dibuat pada `views.py`
+
 
       
 
