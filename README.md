@@ -9,9 +9,9 @@
 + Buat proyek Django bernama minechesty dengan perintah "django-admin startproject minechesty ." <br>
 + Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment <br>
 ```
-  ... <br>
-  ALLOWED_HOSTS = ["*"] <br>
-  ... <br>
+  ... 
+  ALLOWED_HOSTS = ["*"] 
+  ... 
 ```
 + Menguji apakah proyek minechesty berhasil dibuat dengan perintah "python manage.py runserver" <br>
 + Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. <br>
