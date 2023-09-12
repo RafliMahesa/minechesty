@@ -12,9 +12,9 @@ class mainTest(TestCase):
     
     def setUp(self):
         Item.objects.create(name="Obsidian",amount="64",
-                            description="Obsidian is a block found naturally in all dimensions, and created when water flows over a lava source.")
+                            description="Obsidian is a block found naturally in all dimensions, and created when water flows over a lava source.",rarity="Uncommon")
         Item.objects.create(name="Diamond",amount="32",
-                            description="A diamond is a mineral that can only be obtained from diamond ore, loot chests and suspicious blocks.")
+                            description="A diamond is a mineral that can only be obtained from diamond ore, loot chests and suspicious blocks.",rarity="Rare")
         
     def test_items_can_created(self):
         obsidian = Item.objects.get(name="Obsidian")
