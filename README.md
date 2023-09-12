@@ -282,8 +282,8 @@ git push -u origin main
 ![bagan](https://cdn.discordapp.com/attachments/1141216017255776401/1151175617052688384/image.png)
 + User adalah pengguna/individu yang mengakses aplikasi web
 + URLConf(`urls.py`) adalah file yang digunakan untuk mendefisikan rute URL pada aplikasi web. Setiap rute URL yang dibuat akan terkait dengan salah satu fungsi view yang menangani permintaan HTTP yang sesuai
-+ Model(`models.py`) adalah file yang berguna untuk mendefinisikan struktur data yang akan disimpan dalam database
-+ Views(`views.py`) adalah file yang berisi fungsi-fungsi view yang mengatur pola logika untuk menerima permintaan HTTP dari pengguna, mengakses data dari database (melalui model), memprosesnya, dan mengembalikan tampilan HTML yang dihasilkan dengan menggunakan template.
++ Model(`models.py`) adalah file yang digunakan untuk membuat struktur data yang akan disimpan di dalam database.
++ Views(`views.py`) adalah file yang berfungsi sebagai tempat penyimpanan fungsi-fungsi yang mengendalikan bagaimana permintaan HTTP dari pengguna diterima, data dari database diakses dan diproses (menggunakan model), lalu tampilan HTML yang dihasilkan dengan template dikembalikan.
 + Template adalah file HTML yang digunakan untuk menghasilkan tampilan yang akan ditampilkan kepada pengguna. Template ini biasanya mengandung kode HTML.
 + Database adalah tempat di mana data aplikasi disimpan secara permanen. Views dapat mengakses dan mengubah data sesuai dengan model data yang sudah dibuat oleh Model.
 
