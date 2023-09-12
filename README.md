@@ -1,26 +1,26 @@
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 - [x] Membuat sebuah proyek Django baru. <br>
 
-+ Membuat direktori minechesty<br>
-+ Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah "python -m venv env" <br>
-+ Mengaktifkan virtual environment dengan perintah "env\Scripts\activate.bat" <br>
-+ Pada direktori yang sama buat requirements.txt dan tambahkan beberapa dependencies <br>
-+ Pasang dependencies dengan perintah "pip install -r requirements.txt" <br>
-+ Buat proyek Django bernama minechesty dengan perintah "django-admin startproject minechesty ." <br>
-+ Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment <br>
++ Membuat direktori minechesty
++ Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah "python -m venv env" 
++ Mengaktifkan virtual environment dengan perintah "env\Scripts\activate.bat" 
++ Pada direktori yang sama buat requirements.txt dan tambahkan beberapa dependencies 
++ Pasang dependencies dengan perintah "pip install -r requirements.txt" 
++ Buat proyek Django bernama minechesty dengan perintah "django-admin startproject minechesty ." 
++ Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment 
 ```
   ... 
   ALLOWED_HOSTS = ["*"] 
   ... 
 ```
-+ Menguji apakah proyek minechesty berhasil dibuat dengan perintah "python manage.py runserver" <br>
-+ Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. <br>
-+ Untuk menghentikan server tekan Ctrl+C (Windows/Linux) <br>
-+ Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan <br>
++ Menguji apakah proyek minechesty berhasil dibuat dengan perintah "python manage.py runserver"
++ Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. 
++ Untuk menghentikan server tekan Ctrl+C (Windows/Linux) 
++ Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan 
 
-- [x] Membuat aplikasi dengan nama "main" pada proyek minechesty. <br>
-+ Membuat aplikasi "main" dengan perintah "python manage.py startapp main" <br>
-+ Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan "main" ke dalam variable INSTALLED_APPS <br>
+- [x] Membuat aplikasi dengan nama "main" pada proyek minechesty. 
++ Membuat aplikasi "main" dengan perintah "python manage.py startapp main" 
++ Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan "main" ke dalam variable INSTALLED_APPS 
 ```
       INSTALLED_APPS = [ 
           ..., 
