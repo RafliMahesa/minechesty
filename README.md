@@ -3,7 +3,7 @@ Application Link: https://minechesty.adaptable.app <br>
    
 - [x] Membuat sebuah proyek Django baru. <br>
 
-+ Membuat direktori minechesty
++ Membuat direktori minechesty dan menginisialisasi git dengan `git init` serta hubungkan dengan repositori di github dengan `git remote add origin [link]`
 + Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah `python -m venv env` 
 + Mengaktifkan virtual environment dengan perintah `env\Scripts\activate.bat` 
 + Pada direktori yang sama buat `requirements.txt` dan tambahkan beberapa dependencies
