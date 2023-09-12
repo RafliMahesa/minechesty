@@ -8,11 +8,11 @@
 + Pasang dependencies dengan perintah "pip install -r requirements.txt" <br>
 + Buat proyek Django bernama minechesty dengan perintah "django-admin startproject minechesty ." <br>
 + Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment <br>
-      ```
-        ... <br>
-        ALLOWED_HOSTS = ["*"] <br>
-        ... <br>
-      ```
+```
+  ... <br>
+  ALLOWED_HOSTS = ["*"] <br>
+  ... <br>
+```
 + Menguji apakah proyek minechesty berhasil dibuat dengan perintah "python manage.py runserver" <br>
 + Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. <br>
 + Untuk menghentikan server tekan Ctrl+C (Windows/Linux) <br>
@@ -22,11 +22,11 @@
 + Membuat aplikasi "main" dengan perintah "python manage.py startapp main" <br>
 + Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan "main" ke dalam variable INSTALLED_APPS <br>
 ```
-      INSTALLED_APPS = [ <br>
-          ..., <br>
-          'main', <br>
-          ... <br>
-      ] <br>
+      INSTALLED_APPS = [ 
+          ..., 
+          'main', 
+          ... 
+      ]
 ```
 
       
