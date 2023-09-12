@@ -16,7 +16,7 @@ urllib3
 ``` 
 + Pasang dependencies dengan perintah `pip install -r requirements.txt` 
 + Buat proyek Django bernama minechesty dengan perintah `django-admin startproject minechesty .` 
-+ Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment 
++ Tambahkan * pada ALLOWED_HOSTS di `settings.py` untuk keperluan deployment 
 ```
   ... 
   ALLOWED_HOSTS = ["*"] 
@@ -25,7 +25,146 @@ urllib3
 + Menguji apakah proyek minechesty berhasil dibuat dengan perintah `python manage.py runserver`
 + Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. 
 + Untuk menghentikan server tekan Ctrl+C (Windows/Linux) 
-+ Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan 
++ Tambahkan Berkas .gitignore yang berisi code dibawah sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan
+```
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# Backup files
+*.bak 
+
+# If you are using PyCharm
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# AWS User-specific
+.idea/**/aws.xml
+
+# Generated files
+.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# File-based project format
+*.iws
+
+# IntelliJ
+out/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Python
+*.py[cod] 
+*$py.class 
+
+# Distribution / packaging 
+.Python build/ 
+develop-eggs/ 
+dist/ 
+downloads/ 
+eggs/ 
+.eggs/ 
+lib/ 
+lib64/ 
+parts/ 
+sdist/ 
+var/ 
+wheels/ 
+*.egg-info/ 
+.installed.cfg 
+*.egg 
+*.manifest 
+*.spec 
+
+# Installer logs 
+pip-log.txt 
+pip-delete-this-directory.txt 
+
+# Unit test / coverage reports 
+htmlcov/ 
+.tox/ 
+.coverage 
+.coverage.* 
+.cache 
+.pytest_cache/ 
+nosetests.xml 
+coverage.xml 
+*.cover 
+.hypothesis/ 
+
+# Jupyter Notebook 
+.ipynb_checkpoints 
+
+# pyenv 
+.python-version 
+
+# celery 
+celerybeat-schedule.* 
+
+# SageMath parsed files 
+*.sage.py 
+
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
+
+# mkdocs documentation 
+/site 
+
+# mypy 
+.mypy_cache/ 
+
+# Sublime Text
+*.tmlanguage.cache 
+*.tmPreferences.cache 
+*.stTheme.cache 
+*.sublime-workspace 
+*.sublime-project 
+
+# sftp configuration file 
+sftp-config.json 
+
+# Package control specific files Package 
+Control.last-run 
+Control.ca-list 
+Control.ca-bundle 
+Control.system-ca-bundle 
+GitHub.sublime-settings 
+
+# Visual Studio Code
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
+```
 
 - [x] Membuat aplikasi dengan nama `main` pada proyek minechesty.
       
@@ -38,20 +177,9 @@ urllib3
           ... 
       ]
 ```
+
 - [x] Melakukan routing pada proyek agar dapat menjalankan aplikasi `main`.
-      
-+ Buatlah berkas `urls.py` di dalam direktori `main`.
-+ Isilah `urls.py` dengan kode
-```
-from django.urls import path
-from main.views import show_main
 
-app_name = 'main'
-
-urlpatterns = [
-    path('', show_main, name='show_main'),
-]
-```
 + Buka berkas `urls.py` di dalam direktori proyek `minechesty`
 + Impor fungsi `include` dari `django.urls`
 ```
@@ -114,13 +242,41 @@ def show_main(request):
 <p>{{ class }}<p>
 ```
 
-- [x] Membuat sebuah routing pada `urls.py` aplikasi `main` untuk memetakan fungsi yang telah dibuat pada `views.py`
-
-
+- [x] Membuat sebuah routing pada `urls.py` aplikasi main untuk memetakan fungsi yang telah dibuat pada `views.py`.
       
++ Buatlah berkas `urls.py` di dalam direktori `main`.
++ Isilah `urls.py` dengan kode
+```
+from django.urls import path
+from main.views import show_main
 
+app_name = 'main'
 
+urlpatterns = [
+    path('', show_main, name='show_main'),
+]
+```
 
+- [x] Melakukan deployment ke Adaptable
+      
++ Pertama-tama lakukan simpan direktori ke Github dengan cara
+```
+git add *
+```
+```
+git commit -m "<KOMENTAR>"
+```
+```
+git push -u origin main
+```
++ Masuk ke web Adaptable.io lalu login dan tombol `new app`. Pilih `Connect an Existing Repository`
++ Pilihlah repositori proyek minechesty sebagai basis-aplikasi yang akan di deploy. Lalu pilih branch yang akan dijadikan deployment branch
++ Pilihlah `Python App Template` sebagai template deployment
++ Pilih `PostgreSQL` sebagai tipe basis data yang akan digunakan
++ Pilih Python versi 3.11
++ Pada bagian Start Command masukkan perintah python manage.py migrate && gunicorn minechesty.wsgi
++ Masukkan nama aplikasi yang akan dijadikan domain web
++ Centang bagian `HTTP Listener on PORT` dan klik `Deploy App` untuk mulai proses deployment aplikasi
 
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 
