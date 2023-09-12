@@ -1,3 +1,4 @@
+Application Link: https://minechesty.adaptable.app <br>
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    
 - [x] Membuat sebuah proyek Django baru. <br>
