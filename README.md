@@ -1,22 +1,22 @@
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 - [x] Membuat sebuah proyek Django baru.
-      - Membuat direktori <br>
-      - Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah "python -m venv env" <br>
-      - Mengaktifkan virtual environment dengan perintah "env\Scripts\activate.bat" <br>
-      - Pada direktori yang sama buat requirements.txt dan tambahkan beberapa dependencies <br>
-      - Pasang dependencies dengan perintah "pip install -r requirements.txt" <br>
-      - Buat proyek Django bernama minechesty dengan perintah "django-admin startproject minechesty ." <br>
-      - Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment <br>
+      * Membuat direktori <br>
+      * Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah "python -m venv env" <br>
+      * Mengaktifkan virtual environment dengan perintah "env\Scripts\activate.bat" <br>
+      * Pada direktori yang sama buat requirements.txt dan tambahkan beberapa dependencies <br>
+      * Pasang dependencies dengan perintah "pip install -r requirements.txt" <br>
+      * Buat proyek Django bernama minechesty dengan perintah "django-admin startproject minechesty ." <br>
+      * Tambahkan * pada ALLOWED_HOSTS di settings.py untuk keperluan deployment <br>
         ... <br>
         ALLOWED_HOSTS = ["*"] <br>
         ... <br>
-      - Menguji apakah proyek minechesty berhasil dibuat dengan perintah "python manage.py runserver" <br>
-      - Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. <br>
-      - Untuk menghentikan server tekan Ctrl+C (Windows/Linux) <br>
-      - Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan <br>
+      * Menguji apakah proyek minechesty berhasil dibuat dengan perintah "python manage.py runserver" <br>
+      * Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. <br>
+      * Untuk menghentikan server tekan Ctrl+C (Windows/Linux) <br>
+      * Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan <br>
 - [x] Membuat aplikasi dengan nama "main" pada proyek minechesty. <br>
-      - Membuat aplikasi "main" dengan perintah "python manage.py startapp main" <br>
-      - Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan "main" ke dalam variable INSTALLED_APPS <br>
+      * Membuat aplikasi "main" dengan perintah "python manage.py startapp main" <br>
+      * Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan "main" ke dalam variable INSTALLED_APPS <br>
       INSTALLED_APPS = [ <br>
           ..., <br>
           'main', <br>
@@ -42,21 +42,21 @@ Model-View-Controller (MVC), Model-View-ViewModel (MVVM), dan Model-View-Templat
 
 a. MVC (Model-View-Controller)
 MVC adalah pola desain arsitektur yang membagi aplikasi menjadi 3 bagian yaitu: model, view, dan controller.
-- Model bertanggung jawab untuk mengatur dan mengelola data dari aplikasi.
-- View merupakan komponen yang menangani logika presentasi dalam konsep MVT. View bertanggung jawab untuk mengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna
-- Controller berperan dalam menerima masukan dari pengguna, mengatur komunikasi antara Model (data dan logika bisnis) dengan View (antarmuka pengguna), serta melakukan pemrosesan masukan tersebut untuk menentukan tindakan yang perlu diambil terkait data Model dan tampilan View.
+* Model bertanggung jawab untuk mengatur dan mengelola data dari aplikasi.
+* View merupakan komponen yang menangani logika presentasi dalam konsep MVT. View bertanggung jawab untuk mengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna
+* Controller berperan dalam menerima masukan dari pengguna, mengatur komunikasi antara Model (data dan logika bisnis) dengan View (antarmuka pengguna), serta melakukan pemrosesan masukan tersebut untuk menentukan tindakan yang perlu diambil terkait data Model dan tampilan View.
 
 b. MVT (Model-View-Template)
 MVT adalah pola yang mirip dengan MVC, tetapi controller digantikan dengan Template. MVT biasanya digunakan dalam pengembangan web dengan Django web framework.
-- Model bertanggung jawab untuk mengatur dan mengelola data dari aplikasi.
-- View merupakan komponen yang menangani logika presentasi dalam konsep MVT. View bertanggung jawab untuk mengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna
-- Template adalah komponen yang berfungsi untuk mengatur tampilan atau antarmuka pengguna. Template digunakan untuk merancang tampilan HTML dan menampilkan data dari model melalui view.
+* Model bertanggung jawab untuk mengatur dan mengelola data dari aplikasi.
+* View merupakan komponen yang menangani logika presentasi dalam konsep MVT. View bertanggung jawab untuk mengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna
+* Template adalah komponen yang berfungsi untuk mengatur tampilan atau antarmuka pengguna. Template digunakan untuk merancang tampilan HTML dan menampilkan data dari model melalui view.
 
 c. MVVM (Model-View-ViewModel)
 MVVM adalah varian modern dari MVC yang biasa digunakan untuk mengembangkan aplikasi web yang dapat digunakan kembali dan mudah diuji.
-- Model bertanggung jawab untuk mengatur dan mengelola data dari aplikasi.
-- View: bertanggung jawab untuk tampilan
-- ViewModel: Bertugas untuk menghubungkan Model dan View. ViewModel tidak memiliki referensi ke View dan View tidak perlu menunggu proses pada ViewModel. ViewModel melakukan observe terhadap Model, sehingga jika ada perubahan di Model, ViewModel akan tahu
+* Model bertanggung jawab untuk mengatur dan mengelola data dari aplikasi.
+* View: bertanggung jawab untuk tampilan
+* ViewModel: Bertugas untuk menghubungkan Model dan View. ViewModel tidak memiliki referensi ke View dan View tidak perlu menunggu proses pada ViewModel. ViewModel melakukan observe terhadap Model, sehingga jika ada perubahan di Model, ViewModel akan tahu
 
 Perbedaan utama antara ketiga pola ini terletak pada bagaimana mereka mengelola komunikasi antara Model dan View. 
 * Dalam MVC, Controller bertanggung jawab untuk mengelola komunikasi antara Model dan View menggunakan peristiwa. 
