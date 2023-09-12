@@ -1,6 +1,6 @@
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 - [x] Membuat sebuah proyek Django baru.
-      * Membuat direktori <br>
+      * Membuat direktori minechesty<br>
       * Di dalam direktori tersebut, buka command prompt (Windows) atau terminal shell (Unix) lalu buat virtual environment dengan perintah "python -m venv env" <br>
       * Mengaktifkan virtual environment dengan perintah "env\Scripts\activate.bat" <br>
       * Pada direktori yang sama buat requirements.txt dan tambahkan beberapa dependencies <br>
@@ -14,6 +14,7 @@
       * Buka http://localhost:8000 pada web yang biasa dipakai untuk melihat animasi roket sebagai tanda aplikasi Django berhasil dibuat. <br>
       * Untuk menghentikan server tekan Ctrl+C (Windows/Linux) <br>
       * Tambahkan Berkas .gitignore yang berisi sesuai pada tutorial sehingga Repositori Git tau mana berkas-berkas atau direktori-direktori yang diabaikan <br>
+- [x] Membuat aplikasi dengan nama "main" pada proyek minechesty. <br>
 - [x] Membuat aplikasi dengan nama "main" pada proyek minechesty. <br>
       * Membuat aplikasi "main" dengan perintah "python manage.py startapp main" <br>
       * Memasukkan aplikasi main ke dalam proyek dengan cara membuat settings.py pada direktori proyek minechesty lalu memasukkan "main" ke dalam variable INSTALLED_APPS <br>
