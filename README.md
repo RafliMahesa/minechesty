@@ -290,7 +290,7 @@ git push -u origin main
 Pada pengembangan aplikasi web dengan Django, pengguna mengirimkan permintaan HTTP ke alamat web tertentu yang telah ditentukan dalam file `urls.py`. Alamat web ini terhubung dengan fungsi view yang ada dalam file `views.py`. Fungsi view tersebut akan mengambil dan memproses data dari database menggunakan definisi model dalam file `model.py`. Hasilnya akan ditampilkan melalui tampilan HTML yang telah dibuat dengan template, kemudian dikirimkan kembali kepada pengguna sebagai tampilan web.
 
 
-4. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
+3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 
 Virtual environment (lingkungan virtual) adalah cara untuk membuat suatu "ruang kerja" yang terisolasi di komputer kita pada proyek perangkat lunak yang kita kerjakan. Setiap "ruang kerja" mungkin memiliki versi Python berbeda dengan yang diperlukan untuk masing-masing proyek. Selain itu karena berbagai proyek memiliki package dan dependencies yang berbeda-beda, maka dengan penggunaan virtual environment akan ada sekat yang dapat mencegahnya bertabrakan/bentrok.
 
