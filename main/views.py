@@ -9,12 +9,16 @@ from django.core import serializers
 # Create your views here.
 def show_main(request):
     item = Item.objects.all()
+    total_item = 0
+    for i in item:
+        total_item += 1
 
     context = {
         'app_name' : 'MineChesty',
         'name' : 'Muhammad Rafli Mahesa',
         'class': 'PBP E',
-        'item' : item
+        'item' : item,
+        'total' : total_item
     }
 
     return render(request, "main.html", context)
