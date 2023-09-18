@@ -1,6 +1,40 @@
-<h1>{{ app_name }}</h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<p>{{ name }}<p>
-<h5>Class: </h5>
-<p>{{ class }}<p>
+{% block content %}
+    <h1>Shopping List Page</h1>
+
+    <h5>Name:</h5>
+    <p>{{name}}</p>
+
+    <h5>Class:</h5>
+    <p>{{class}}</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Rarity</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for barang in item %}
+        <tr>
+            <td>{{barang.name}}</td>
+            <td>{{barang.amount}}</td>
+            <td>{{barang.description}}</td>
+            <td>{{barang.rarity}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+{% endblock content %}

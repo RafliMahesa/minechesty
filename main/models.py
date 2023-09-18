@@ -4,6 +4,6 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     amount = models.IntegerField()
     description = models.TextField()
-    rarity = models.TextField(default='uncommon', editable=False)
+    rarity = models.TextField(default='uncommon')
 
 

@@ -323,3 +323,211 @@ Perbedaan utama antara ketiga pola ini terletak pada bagaimana mereka mengelola 
 * Dalam MVC, Controller bertanggung jawab untuk mengelola komunikasi antara Model dan View menggunakan peristiwa. 
 * Dalam MVVM, kerangka kerja melakukan semua pengangkatan berat menggunakan fitur yang disebut data pengikatan data. ViewModel di MVVM membantu menjaga tampilan terpisah dari model, dan pada saat yang sama, bertindak sebagai pengontrol untuk memfasilitasi komunikasi antara tampilan dan komponen model. 
 * Dalam MVT, Template bertugas untuk mengurus bagaimana halaman/halaman web ditampilkan di browser.
+
+--------------------------__TUGAS 2__--------------------------
+
+1. Apa perbedaan antara form POST dan form GET dalam Django?
+Form POST dan form GET memiliki tujuan yang berbeda. Jika terdapat `request` yang bisa merubah keadaan pada system, seperti contoh mengubah sesuatu pada database maka gunakan POST. Jika terdapat `request` yang tidak merubah keadaan pada system maka gunakan GATE. Cara kerja form POST adalah data yang dimasukkan dalam form akan dikirimkan ke server sebagai bagian dari body permintaan HTTP sedangkan form GET data yang dimasukkan ke formulir akan dikirimkan ke server melalui URL sebagai bagian dari query String.
+
+Contoh:
+__POST__ 
+```
+/hasil-pencarian.php HTTP/1.1
+```
+__GET__
+```
+/hasil-pencarian.php?kata_kunci=kucing HTTP/1.1
+```
+
+Metode GET tidak cocok untuk formulir kata sandi, data besar, atau data biner karena informasinya muncul dalam URL dan meningkatkan risiko keamanan, sementara cocok digunakan dalam formulir pencarian web karena URL hasil pencarian dapat dengan mudah dibookmark atau dibagikan. Sedangkan metode POST lebih aman untuk formulir admin dengan perlindungan tambahan seperti CSRF. Jadi kesimpulannya __GET__ digunakan untuk mengambil data dari server dan __POST__ digunakan untuk mengirim data ke server.
+
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+__Struktur Data__
++ Pada XML data disimpan dengan struktur pohon dengan namespace untuk kategori data yang berbeda. Pada XML sudah memiliki tag yang telah ditentukan, namun user tetap dapat membuat atau menambah tag mereka sendiri.
++ Pada JSON data disimpan dengan struktur seperti dictionary pada python yaitu dengan pasangan `key`-`value` sehingga JSON lebih sederhana dan memiliki syntaks yang lebih ringkas dibanding XML.
++ HTML digunakan untuk membangun struktur dan tampilan halaman web. Pada HTML tag telah ditentukan sebelumnya dan user tidak memiliki fleksibilitas untuk membuat tag mereka sendiri seperti pada XML dan JSON dalam hal menyimpan data.
+
+__Penggunaan dan Penerapan__
++ Pada XML mendukung berbagai jenis data seperti string, integer, boolean, date, image, namespace, dan custom types sesuai kebutuhan
++ Pada JSON data dikirim melalui internet dalam format yang lebih ringkas dan mudah ditulis. JSON lebih umum digunakan dalam pengembangan aplikasi web dan API karena dukungan yang kuat dari JavaScript
++ HTML digunakan untuk membangun tampilan web dan tidak secara khusus dirancang untuk pengiriman data. HTML lebih cocok untuk menampilkan data secara visual kepada user
+
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
++ JSON mudah ditulis dan dipahami karena format `key`-`value` dan array yang mudah dibaca oleh manusia.
++ Fleksibel karena JSON dapat menyimpan beragam struktur data seperti objek, array, string, dan tipe data lainnya yang sering dipakai.
++ Memiliki native format JavaScript dan mudah diparse oleh broswer.
++ Compatible dengan banyak bahasa pemrograman seperti JavaScript, Python, Java, C#, Ruby, PHP, C++.
+
+
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+- [x] Membuat input `form` untuk menambahkan objek model pada app sebelumnya. <br>
++ Pada direktori `main` buat berkas baru `forms.py`. Lalu isilah dengan kode dibawah ini
+```
+from django.forms import ModelForm
+from main.models import Product
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ["name", "price", "description"]
+```
++ Buka berkas `views.py` pada direktori `main` dan tambahkan beberapa import
+```
+from django.http import HttpResponseRedirect
+from main.forms import ItemForm
+from django.urls import reverse
+```
++ Lalu pada file yang sama, buatlah fungsi baru bernama `create_product` dengan parameter `request` seperti dibawah ini
+```
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+```
++ Ubah fungsi `show_main` yang sudah ada pada berkas `views.py` menjadi seperti berikut 
+```
+def show_main(request):
+    item = Item.objects.all()
+
+    context = {
+        'app_name' : 'MineChesty',
+        'name' : 'Muhammad Rafli Mahesa',
+        'class': 'PBP E',
+        'item' : item
+    }
+
+    return render(request, "main.html", context)
+```
++ Buka `urls.py` pada direktori `main` dan import fungsi `create_product`
+```
+from main.views import show_main, create_product
+```
++ Tambahkan path url ke dalam `urlpatterns` pada `urls.py` di `main`
+```
+path('create-product', create_product, name='create_product'),
+```
+- [x] Tambahkan 5 fungsi `views` untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID. <br>
+
+__Fungsi `views` untuk formal HTML__
++ Membuat berkas HTML baru dengan nama `create_product.html` pada direktori templates. Lalu isi dengan kode berikut
+```
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Add New Product</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add Product"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
++ Buka `main.html` dan tambahkan kode berikut di dalam `{% block content %}` dibawah nama dan kelas.
+```
+...
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Rarity</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for barang in item %}
+        <tr>
+            <td>{{barang.name}}</td>
+            <td>{{barang.amount}}</td>
+            <td>{{barang.description}}</td>
+            <td>{{barang.rarity}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+{% endblock content %}
+```
+__Fungsi `views` untuk format XML__
++ Buka `views.py` pada direktori `main` dan tambahkan import `HttpResponse` dan `Serializer`.
+```
+from django.http import HttpResponse
+from django.core import serializers
+```
++ Buat fungsi `show_xml` yang menerima parameter request dan buat sebuah variable untuk menyimpan hasil query dari seluruh data yang ada pada Items serta tambahkan return function berupa `HttpResponse` yang berisi parameter data hasil `query` yang sudah diserialisasi menjadi format XML dan parameter `content_type="application/xml"`.
+```
+def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+```
+__Fungsi `views` untuk format JSON__
++ Pada berkas `views.py` pada direktori `main`, buat fungsi `show_json` yang menerima parameter request dan buat sebuah variable untuk menyimpan hasil query dari seluruh data yang ada pada Items serta tambahkan return function berupa `HttpResponse` yang berisi parameter data hasil `query` yang sudah diserialisasi menjadi format JSON dan parameter `content_type="application/json"`.
+```
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+__Fungsi `views` untuk format XML by ID dan JSON by ID__
++ Buka berkas `views.py` pada direktori `main` dan buatlah fungsi baru yang menerima parameter request dan id dengan nama `show_xml_by_id` dan `show_json_by_id`. Lalu buat sebuah variable untuk menyimpan hasil query dari seluruh data yang ada pada Items. Tambahkan return function berupa `HttpResponse` yang berisi parameter data hasil query yang sudah diserialisasi menjadi JSON atau XML dan parameter `content_type` dengan value `"application/xml"` (untuk format XML) atau `"application/json"` (untuk format JSON).
++ XML
+```
+def show_xml_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+```
++ JSON
+```
+def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+```
+- [x] Membuat routing URL untuk masing-masing `views` yang telah ditambahkan pada poin 2. <br>
++ Buka berkas `urls.py` pada direktori `main` dan import fungsi yang sudah dibuat
+```
+from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+```
++ Tambahkan beberapa path url ke dalam `urlpatterns` untuk mengakses fungsi yang sudah diimport
+```
+...
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+    path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+... 
+```
+
+- [x] Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md`.
+
+__Dokumentasi Akses URL XML__
+![XML](https://media.discordapp.net/attachments/1141216017255776401/1152987450168311849/image.png?width=1187&height=542)
+__Dokumentasi Akses URL JSON__
+![JSON](https://media.discordapp.net/attachments/1141216017255776401/1152987210723885167/image.png?width=1048&height=633)
+__Dokumentasi Akses URL XML by ID__
+![XML by ID](https://media.discordapp.net/attachments/1141216017255776401/1152987565578801305/image.png?width=1187&height=357)
+__Dokumentasi Akses URL JSON by ID__
+![JSON by ID](https://media.discordapp.net/attachments/1141216017255776401/1152987653298475058/image.png?width=1187&height=454)
+
+
+
