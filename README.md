@@ -502,19 +502,21 @@ def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 ```
-```
+
 - [x] Membuat routing URL untuk masing-masing `views` yang telah ditambahkan pada poin 2. <br>
 + Buka berkas `urls.py` pada direktori `main` dan import fungsi yang sudah dibuat
 ```
 from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
 ```
 + Tambahkan beberapa path url ke dalam `urlpatterns` untuk mengakses fungsi yang sudah diimport
+
 ```
     path('xml/', show_xml, name='show_xml'),
     path('json/', show_json, name='show_json'),
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 ```
+
 
 - [x] Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md`.
 
