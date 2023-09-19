@@ -414,61 +414,25 @@ path('create-product', create_product, name='create_product'),
 - [x] Tambahkan 5 fungsi `views` untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID. <br>
 
 __Fungsi `views` untuk formal HTML__
-+ Membuat berkas HTML baru dengan nama `create_product.html` pada direktori templates. Lalu isi dengan kode berikut
++ Lalu pada `views.py` lengkapi fungsi `show_main` untuk melihat dalam format HTML dengan menambahkan beberapa kode menjadi seperti dibawah ini 
 ```
-{% extends 'base.html' %} 
+def show_main(request):
+    item = Item.objects.all()
+    total_item = 0
+    for i in item:
+        total_item += 1
 
-{% block content %}
-<h1>Add New Product</h1>
+    context = {
+        'app_name' : 'MineChesty',
+        'name' : 'Muhammad Rafli Mahesa',
+        'class': 'PBP E',
+        'item' : item,
+        'total' : total_item
+    }
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
-
-{% endblock %}
+    return render(request, "main.html", context)
 ```
-+ Buka `main.html` dan tambahkan kode berikut di dalam `{% block content %}` dibawah nama dan kelas.
-```
-...
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Description</th>
-        <th>Rarity</th>
-    </tr>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for barang in item %}
-        <tr>
-            <td>{{barang.name}}</td>
-            <td>{{barang.amount}}</td>
-            <td>{{barang.description}}</td>
-            <td>{{barang.rarity}}</td>
-        </tr>
-    {% endfor %}
-</table>
-
-<br />
-
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
-
-{% endblock content %}
-```
 __Fungsi `views` untuk format XML__
 + Buka `views.py` pada direktori `main` dan tambahkan import `HttpResponse` dan `Serializer`.
 ```
@@ -520,6 +484,8 @@ from main.views import show_main, create_product, show_xml, show_json, show_xml_
 
 - [x] Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md`.
 
+__Dokumentasi Akses URL HTML__
+![HTML](https://media.discordapp.net/attachments/1141216017255776401/1153686627059761202/image.png?width=1073&height=633)
 __Dokumentasi Akses URL XML__
 ![XML](https://media.discordapp.net/attachments/1141216017255776401/1152987450168311849/image.png?width=1187&height=542)
 __Dokumentasi Akses URL JSON__
@@ -528,6 +494,7 @@ __Dokumentasi Akses URL XML by ID__
 ![XML by ID](https://media.discordapp.net/attachments/1141216017255776401/1152987565578801305/image.png?width=1187&height=357)
 __Dokumentasi Akses URL JSON by ID__
 ![JSON by ID](https://media.discordapp.net/attachments/1141216017255776401/1152987653298475058/image.png?width=1187&height=454)
+
 
 
 
