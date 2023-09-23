@@ -794,7 +794,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 ```
-+ Buka berkas `main.html` dan tambahkan potongan kode berikut di antara tabel data dan tombol logout.
++ Buka berkas `main.html` dan tambahkan potongan kode berikut di bawah tombol logout.
 ```
 ...
 <h5>Sesi terakhir login: {{ last_login }}</h5>

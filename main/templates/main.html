@@ -3,10 +3,10 @@
 {% block content %}
     <h1>{{app_name}}</h1>
 
-    <h5>Username:</h5>
+    <h5 style="font-size: 14px;">Username:</h5>
     <p>{{name}}</p>
 
-    <h5>Kelas:</h5>
+    <h5 style="font-size: 14px;">Kelas:</h5>
     <p>{{class}}</p>
 
     <td>Kamu menyimpan {{total}} item pada aplikasi ini</td>
@@ -22,17 +22,31 @@
     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
     {% for barang in item %}
         <tr>
-            <td>{{barang.name}}</td>
-            <td>{{barang.amount}}</td>
-            <td>{{barang.description}}</td>
-            <td>{{barang.rarity}}</td>
+            <td style="text-align: center;">{{barang.name}}</td>
+            <td style="text-align: center;">{{barang.amount}}</td>
+            <td style="text-align: center;">{{barang.description}}</td>
+            <td style="text-align: center;">{{barang.rarity}}</td>
+            <td>
+                <form method="post" action="{% url 'main:tambah_amount' barang.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add</button>
+                </form>
+            </td>
+            <td> 
+                <form method="post" action="{% url 'main:kurang_amount' barang.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Decrement</button>
+                </form>
+            </td>
+            <td> 
+                <form method="post" action="{% url 'main:hapus_item' barang.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
     {% endfor %}
 </table>
-
-<br />
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
 
 <a href="{% url 'main:create_product' %}">
     <button>
@@ -40,12 +54,12 @@
     </button>
 </a>
 
-...
 <a href="{% url 'main:logout' %}">
     <button>
         Logout
     </button>
 </a>
-...
+
+<h5 style="font-size: 14px;">Sesi terakhir login: {{ last_login }}</h5>
 
 {% endblock content %}
