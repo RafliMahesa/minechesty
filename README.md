@@ -510,8 +510,8 @@ __Kekurangan:__
 
 __Autentikasi:__
 + Autentikasi adalah proses verifikasi user yang masuk ke dalam system.
-+ Autentikasi dapat dilakukan dengan berbagai metode, namun pada Django autentikasinya berupa form.
-<br>
++ Autentikasi dapat dilakukan dengan berbagai metode, namun pada Django autentikasinya berupa form. <br>
+
 __Otorisasi:__
 + Otorisasi adalah proses penentuan hak akses yang diberikan kepada user setelah melewati tahap autentikasi.
 + Otorisasi bertujuan agar user dapat memiliki akses ke system sesuai dengan peran mereka dan tidak melewati batas izin dari peran mereka sendiri.
