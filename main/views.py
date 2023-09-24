@@ -94,20 +94,26 @@ def show_json_by_id(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def tambah_amount(request, id):
-    item = Item.objects.get(pk=id)
-    item.amount += 1
-    item.save()
+    if request.method == "POST":
+        item = Item.objects.get(pk=id)
+        item.amount += 1
+        item.save()
     return HttpResponseRedirect(reverse('main:show_main'))
 
 def kurang_amount(request, id):
-    item = Item.objects.get(pk=id)
-    item.amount -= 1
-    item.save()
+    if request.method == "POST":
+        item = Item.objects.get(pk=id)
+        if item.amount > 0:
+            item.amount -= 1
+            item.save()
+        if item.amount == 0:
+            item.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
 
 def hapus_item(request, id):
-    item = Item.objects.get(pk=id)
-    item.delete()
+    if request.method == "POST":
+        item = Item.objects.get(pk=id)
+        item.delete()
     return HttpResponseRedirect(reverse('main:show_main')) 
 
 
