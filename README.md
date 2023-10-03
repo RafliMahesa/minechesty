@@ -801,5 +801,389 @@ def logout_user(request):
 ...
 ```
 
+--------------------------__TUGAS 4__--------------------------
+
+1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya. <br>
+a. Element Selector <br>
+Jadi pada `element selector` kita dapat mengubah properti untuk semua elemen HTML yang mempunyai blok tag sama. Ini sangat berguna untuk mengatur gaya default elemen HTML. <br>
+b. ID Selector <br>
+`Selector ID` digunakan untuk mengidentifikasi elemen HTML yang memiliki atribut id unik dan menerapkan gaya khusus pada elemen tersebut. ID selector memiliki keutamaan tertinggi dalam hierarki selector. <br>
+c. Class Selector <br>
+`Class Selector` digunakan untuk mengidentifikasi dan menerapkan gaya pada elemen-elemen HTML yang memiliki atribut class yang sama. Ini memungkinkan Anda untuk menerapkan gaya yang serupa pada beberapa elemen.
+
+2. Jelaskan HTML5 Tag yang kamu ketahui. <br>
++ `<!DOCTYPE html>` merupakan deklarasi yang biasanya posisinya paling atas dan menandakan bahwa halaman ini menggunakan HTML5.
++ `<html>` untuk mengawali dan mengelilingi seluruh konten HTML.
++ `<head>` untuk menampung informasi umum tentang halaman/dokumen seperti judul halaman.
++ `<meta>` untuk menyisipkan informasi tentang halaman web.
++ `<title>` untuk menentukan judul halaman yang akan ditampilkan di halaman.
++ `<link>` untuk menghubungkan html dengan berkas eksternal, contohnya adalah file css.
++ `<style>` untuk memberikan kode style CSS ke dalam tampilan halaman. 
++ `<script>` untuk menyertakan kode javascript.
++ `<body>` untuk mengelilingi halaman utama pada web kita seperti halaman web, teks, gambar dan lain-lainnya yang akan ditampilkan ke halaman pengguna.
++ `<h1>,<h2>,...,<h6>` merupakan tag-tag yang digunakan untuk menandakan judul dengan tingkat prioritas yang berbeda-beda. 1 adalah urutan prioritas tertinggi dan 6 dengan prioritas terendah.
++ `<p>` untuk paragraf.
++ `<a>` untuk membuat tautan(hyperlink) ke halaman web lain.
++ `<img>`untuk menampilkan gambar ke halaman web.
++ `<ul>,<ol>,<li>` digunakan untuk berbeda-beda. ul untuk list yang tidak ordered, ol untuk list terurut, dan jika masing-masing elemen daftar bisa berisi elemen daftar maka gunakan li.
++ `<div>` untuk mengelompokkan kode-kode HTML ke dalam blok yang dapat diubah tampilannya dalam CSS
++ `<form>` untuk membuat formulir untuk user mengirim data ke server
+
+Selain HTML5 Tag diatas tentu masih banyak tag HTML5 yang belum saya masukkan. Jadi yang saya masukkan diatas merupakan yang umum dipakai.
+
+3. Jelaskan perbedaan antara margin dan padding. <br>
+Margin dan Padding adalah dua konsep pada CSS yang digunakan untuk menyediakan jarak antar item yang berbeda. Margin dan Padding mempunyai kegunaan yang berbeda dan tidak bisa saling digantikan. <br>
+
+Margin adalah ruang kosong di sekitar elemen HTML, sementara Padding adalah ruang kosong di dalam elemen HTML. Margin dapat digunakan untuk menambah ruang kosong di sekitar elemen HTML atau mengubah posisi elemen relatif dari elemen terhadap elemen lainnya, sedangkan Padding dapat digunakan untuk menambahkan ruang kosong di sekitar konten HTML atau untuk memperbesar atau memperkecil elemen itu sendiri. <br>
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya? <br>
+
+* Bootstrap merupakan framework yang dimana komponennya sudah siap dipakai. Framework ini sangat cocok proyek yang memerlukan tampilan yang responsif serta tampilan yang sudah didefinisikan. Selain itu bootstrap sangat mudah digunakan karena hanya perlu menambahkan beberapa baris kode ke HTML anda dengan dokumentasi yang sudah cukup lengkap.
+
+* Tailwind merupakan framework yang tidak disediakan komponen siap pakai, namun kita harus merancang sendiri dengan menggunakan kelas-kelas utilitas yang di sediakan Tailwind CSS.
+
+Jadi jika kita ingin framework untuk proyek yang memerlukan tampilan responsif serta komponen yang sudah tinggal pakai maka gunakanlah bootstrap, namun jika ingin membuat tampilan yang sangat kustom serta fleksibel dan memiliki kontrol penuh atas tampilan elemen maka Tailwind CSS sangat direkomendasikan.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). <br>
+- [x] Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma)
+* Pada direktori templates, buka berkas base.html lalu tambahkan kode dibawah ini
+```
+<head>
+    {% block meta %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+</head>
+```
+
+* Tambahkan juga Bootstrap CSS dan juga JS
+```
+        {% endblock meta %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    </head>
+```
+
+- [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
++ Pada bagian dimana user sudah login seperti `register.html`, `edit_product.html`, `main.html`, serta `create_product.html` tambahkan navbar dengan kode dibawah ini:
+
+```
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'main:show_main' %}">MineChesty</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'main:create_product' %}">Add Product</a>
+          </li>
+        </ul>
+      </div>
+      <a href="{% url 'main:logout' %}" class="btn btn-danger">
+        Logout
+        </a>
+    </div>
+</nav>
+```
+
++ Pada berkas `register.html` ubah tag untuk tulisan `Register` menggunakan `<title>` lalu ubah semua `<form>` beserta isinya menjadi seperti dibawah ini
+
+```
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Register</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password1.label_tag }}
+                            {{ form.password1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password2.label_tag }}
+                            {{ form.password2 }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+                {% if messages %}
+                    <div class="card-footer">
+                        <ul class="list-unstyled">
+                            {% for message in messages %}
+                                <li class="alert alert-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+```
+
++ Pada berkas `create_product.html` ubah kode menjadi seperti dibawah ini
+```
+<div class="container">
+    <h1 style="font-size: 24px; margin-top: 20px;">Add New Product</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table">
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn btn-primary" value="Add Product"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+```
+
++ Buat berkas `edit_product.html` lalu tambahkan kode dibawah ini
+
+```
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'main:show_main' %}">MineChesty</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'main:create_product' %}">Add Product</a>
+            </ul>
+        </div>
+        <a href="{% url 'main:logout' %}" class="btn btn-danger">
+            Logout
+            </a>
+    </div>
+</nav>
+
+<h1>Edit Product</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Edit Product"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
+
++ Buka `views.py` lalu tambahkan fungsi `edit_item` sesuai kode dibawah ini
+```
+def edit_item(request, id):
+    # Get product berdasarkan ID
+    item = Item.objects.get(pk = id)
+
+    # Set product sebagai instance dari form
+    form = ItemForm(request.POST or None, instance=item)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
+```
+
++ Lalu pada berkas `urls.py` tambahkan import `edit_item` dan pada `urlpatterns` tambahkan kode berikut
+```
+    path('edit-product/<int:id>', edit_item, name='edit_product'),
+```
+
++ Pada berkas `login.html` ubah kode block content menjadi seperti dibawah ini
+```
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-6">
+            <div class="Login text-center"> <!-- Menambahkan class "text-center" -->
+                <h1>Login Minechesty</h1>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </form>
+
+                {% if messages %}
+                    <ul class="mt-3">
+                        {% for message in messages %}
+                            <li class="alert alert-danger">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class="mt-3">
+                    Don't have an account yet? <a href="{% url 'main:register' %}">Register Here!!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+```
+
+- [x] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
++ Buka berkas `main.html` lalu ubah tombol menggunakan komponen-komponen dari framework boostrap dengan kode dibawah ini
+```
+                    <td>
+                        <form method="post" action="{% url 'main:tambah_amount' barang.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form method="post" action="{% url 'main:kurang_amount' barang.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning">Decrement</button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form method="post" action="{% url 'main:hapus_item' barang.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'main:edit_product' barang.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                    </td>	
+```
+
++ Pada berkas yang sama juga, buat elemen <div> dengan class container yang memiliki margin 20 pixel dan masukkan semua kode sebelumnya pada <div> tersebut.
+
+```
+<div class="container" style="margin-top: 20px;">
+    <h5 style="font-size: 14px;">Username:</h5>
+    <p>{{name}}</p>
+
+    <h5 style="font-size: 14px;">Kelas:</h5>
+    <p>{{class}}</p>
+
+    <p>Kamu menyimpan {{total}} item pada aplikasi ini</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align: center;">Name</th>
+                <th style="text-align: center;">Amount</th>
+                <th style="text-align: center;">Description</th>
+                <th style="text-align: center;">Rarity</th>
+                <th colspan="4" style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+            {% for barang in item %}
+                <tr {% if forloop.last %}class="last-item"{% endif %}>
+                    <td style="text-align: center;">{{barang.name}}</td>
+                    <td style="text-align: center;">{{barang.amount}}</td>
+                    <td style="text-align: center;">{{barang.description}}</td>
+                    <td style="text-align: center;">{{barang.rarity}}</td>
+                    <td>
+                        <form method="post" action="{% url 'main:tambah_amount' barang.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form method="post" action="{% url 'main:kurang_amount' barang.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning">Decrement</button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form method="post" action="{% url 'main:hapus_item' barang.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'main:edit_product' barang.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'main:create_product' %}" class="btn btn-success">
+        Add New Product
+    </a>
+
+    <h5 style="font-size: 14px;">Sesi terakhir login: {{ last_login }}</h5>
+</div>
+```
+
++ Pada bagian atas berkas `main.html`, `create_product.html`, dan `edit_product.html` tambahkan font Minecraft dari website (https://fonts.cdnfonts.com/css/minecraft-4) dengan menambahkan kode berikut 
+```
+<head>
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Minecraft', sans-serif;
+        }
+    </style>    
+</head>
+```
 
 

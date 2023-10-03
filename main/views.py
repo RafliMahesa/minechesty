@@ -20,13 +20,16 @@ def show_main(request):
     for i in item:
         total_item += 1
 
+    if ('last_login' not in request.COOKIES):
+        return login_user(request)
+
     context = {
         'app_name' : 'MineChesty',
         'name' : request.user.username,
         'class': 'PBP E',
         'item' : item,
         'total' : total_item,
-        'last_login': request.COOKIES['last_login']
+        'last_login': request.COOKIES['last_login'][:-10]
     }
 
     return render(request, "main.html", context)
@@ -115,6 +118,21 @@ def hapus_item(request, id):
         item = Item.objects.get(pk=id)
         item.delete()
     return HttpResponseRedirect(reverse('main:show_main')) 
+
+def edit_item(request, id):
+    # Get product berdasarkan ID
+    item = Item.objects.get(pk = id)
+
+    # Set product sebagai instance dari form
+    form = ItemForm(request.POST or None, instance=item)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
 
 
     
