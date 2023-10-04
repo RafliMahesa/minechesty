@@ -53,7 +53,7 @@
         <tbody>
             {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
             {% for barang in item %}
-                <tr {% if forloop.last %}class="last-item"{% endif %}>
+                <tr {% if forloop.last %}class="table-warning"{% endif %}>
                     <td style="text-align: center;">{{barang.name}}</td>
                     <td style="text-align: center;">{{barang.amount}}</td>
                     <td style="text-align: center;">{{barang.description}}</td>
