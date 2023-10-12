@@ -1,4 +1,4 @@
---------------------------__TUGAS 2__--------------------------
+--------------------------__TUGAS 2__-------------------------- <br>
 Application Link: https://muhammad-rafli22-tugas.pbp.cs.ui.ac.id/ <br>
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    
@@ -325,7 +325,7 @@ Perbedaan utama antara ketiga pola ini terletak pada bagaimana mereka mengelola 
 * Dalam MVVM, kerangka kerja melakukan semua pengangkatan berat menggunakan fitur yang disebut data pengikatan data. ViewModel di MVVM membantu menjaga tampilan terpisah dari model, dan pada saat yang sama, bertindak sebagai pengontrol untuk memfasilitasi komunikasi antara tampilan dan komponen model. 
 * Dalam MVT, Template bertugas untuk mengurus bagaimana halaman/halaman web ditampilkan di browser.
 
---------------------------__TUGAS 3__--------------------------
+--------------------------__TUGAS 3__-------------------------- <br>
 
 1. Apa perbedaan antara form POST dan form GET dalam Django?
 Form POST dan form GET memiliki tujuan yang berbeda. Jika terdapat `request` yang bisa merubah keadaan pada system, seperti contoh mengubah sesuatu pada database maka gunakan POST. Jika terdapat `request` yang tidak merubah keadaan pada system maka gunakan GATE. Cara kerja form POST adalah data yang dimasukkan dalam form akan dikirimkan ke server sebagai bagian dari body permintaan HTTP sedangkan form GET data yang dimasukkan ke formulir akan dikirimkan ke server melalui URL sebagai bagian dari query String.
@@ -496,7 +496,7 @@ __Dokumentasi Akses URL XML by ID__
 __Dokumentasi Akses URL JSON by ID__
 ![JSON by ID](https://media.discordapp.net/attachments/1141216017255776401/1152987653298475058/image.png?width=1187&height=454)
 
---------------------------__TUGAS 4__--------------------------
+--------------------------__TUGAS 4__-------------------------- <br>
 
 1. Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
 Django `UserCreationForm` adalah sebuah `import` untuk formulir bawaan dari `django.contrib.auth.forms` yang memudahkan kita untuk membuat formulir register untuk user dalam aplikasi web. Dengan Django `UserCreationForm`, user baru bisa register dengan mudah di web tanpa harus menulis kode lagi dari awal.
@@ -802,7 +802,7 @@ def logout_user(request):
 ...
 ```
 
---------------------------__TUGAS 5__--------------------------
+--------------------------__TUGAS 5__-------------------------- <br>
 
 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya. <br>
 a. Element Selector <br>
