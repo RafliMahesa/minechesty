@@ -6,6 +6,26 @@
         body{
             font-family: 'Minecraft', sans-serif;
         }
+
+        .card{
+            width: 265px;
+            height: 300px;
+        }
+
+        .card-body{
+            width: 240px; 
+            height: 360px;
+            border-radius: 10px;
+            margin: 10px;
+            background-color: #9EDDFF;
+            overflow: hidden;
+        }
+        
+        #product_table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 50px;
+        }
     </style>    
 </head>
 
@@ -31,67 +51,113 @@
     </div>
 </nav>
 
-<div class="container" style="margin-top: 20px;">
-    <h5 style="font-size: 14px;">Username:</h5>
+<div class="container" style="margin-top: 20px; max-width: 100%; width: 1200px;">
+    <h5 class="mb-2" style="font-size: 14px;">Username:</h5>
     <p>{{name}}</p>
 
-    <h5 style="font-size: 14px;">Kelas:</h5>
+    <h5 class="mb-2" style="font-size: 14px;">Kelas:</h5>
     <p>{{class}}</p>
 
-    <p>Kamu menyimpan {{total}} item pada aplikasi ini</p>
+    <p>Kamu menyimpan {{total}} item pada aplikasi ini:</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="text-align: center;">Name</th>
-                <th style="text-align: center;">Amount</th>
-                <th style="text-align: center;">Description</th>
-                <th style="text-align: center;">Rarity</th>
-                <th colspan="4" style="text-align: center;">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-            {% for barang in item %}
-                <tr {% if forloop.last %}class="table-warning"{% endif %}>
-                    <td style="text-align: center;">{{barang.name}}</td>
-                    <td style="text-align: center;">{{barang.amount}}</td>
-                    <td style="text-align: center;">{{barang.description}}</td>
-                    <td style="text-align: center;">{{barang.rarity}}</td>
-                    <td>
-                        <form method="post" action="{% url 'main:tambah_amount' barang.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Add</button>
-                        </form>
-                    </td>
-                    <td> 
-                        <form method="post" action="{% url 'main:kurang_amount' barang.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-warning">Decrement</button>
-                        </form>
-                    </td>
-                    <td> 
-                        <form method="post" action="{% url 'main:hapus_item' barang.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="{% url 'main:edit_product' barang.pk %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary">Edit</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div id="product_table"></div>
 
-    <a href="{% url 'main:create_product' %}" class="btn btn-success">
-        Add New Product
-    </a>
+    <br>
 
-    <h5 style="font-size: 14px;">Sesi terakhir login: {{ last_login }}</h5>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="resetForm()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rarity" class="col-form-label">Rarity:</label>
+                            <textarea class="form-control" id="rarity" name="rarity"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetForm()">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 style="font-size: 14px; margin-bottom: 30px;">Sesi terakhir login: {{ last_login }}</h5>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 10px;">Add Product by AJAX</button>
+
 </div>
+
+<script>
+    async function getItem() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+    async function refreshItem() {
+        document.getElementById("product_table").innerHTML = ""
+        const items = await getItem()
+        let htmlString = ""
+        items.forEach((item) => {
+            htmlString += `
+                <div class="card">
+                    <div class="card-body">
+                        <h2 style="border-bottom: 5px solid #6499E9">${item.fields.name}</h2>
+                        <div class="item-details">
+                            <p style= "margin-bottom: 10px";>Description: ${item.fields.description}.</p>
+                            <p style= "margin-bottom: 10px">Amount: ${item.fields.amount}</p>
+                            <p>Rarity: ${item.fields.rarity}</p>
+                        </div>
+                        <a><button onclick="deleteItem(${item.pk})" type="submit">Hapus Item</button></a>
+                    </div>
+                </div>` 
+        })
+        
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+
+    refreshItem()
+
+    function resetForm() {
+        document.getElementById("form").reset();
+    }
+
+    function addItem() {
+    fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+    }).then(refreshItem)
+
+
+    document.getElementById("form").reset()
+    return false
+    }
+
+    document.getElementById("button_add").onclick = addItem
+
+    async function deleteItem(id){
+            let url="{% url 'main:delete_item_ajax' '999' %}";
+            url=url.replace('999',id);
+            const response =await fetch(url,{
+                method: "DELETE",
+            }).then(refreshItem); 
+        }
+</script>
 
 {% endblock content %}

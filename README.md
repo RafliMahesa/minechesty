@@ -1,4 +1,5 @@
-Application Link: https://minechesty.adaptable.app <br>
+--------------------------__TUGAS 2__--------------------------
+Application Link: https://muhammad-rafli22-tugas.pbp.cs.ui.ac.id/ <br>
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    
 - [x] Membuat sebuah proyek Django baru. <br>
@@ -324,7 +325,7 @@ Perbedaan utama antara ketiga pola ini terletak pada bagaimana mereka mengelola 
 * Dalam MVVM, kerangka kerja melakukan semua pengangkatan berat menggunakan fitur yang disebut data pengikatan data. ViewModel di MVVM membantu menjaga tampilan terpisah dari model, dan pada saat yang sama, bertindak sebagai pengontrol untuk memfasilitasi komunikasi antara tampilan dan komponen model. 
 * Dalam MVT, Template bertugas untuk mengurus bagaimana halaman/halaman web ditampilkan di browser.
 
---------------------------__TUGAS 2__--------------------------
+--------------------------__TUGAS 3__--------------------------
 
 1. Apa perbedaan antara form POST dan form GET dalam Django?
 Form POST dan form GET memiliki tujuan yang berbeda. Jika terdapat `request` yang bisa merubah keadaan pada system, seperti contoh mengubah sesuatu pada database maka gunakan POST. Jika terdapat `request` yang tidak merubah keadaan pada system maka gunakan GATE. Cara kerja form POST adalah data yang dimasukkan dalam form akan dikirimkan ke server sebagai bagian dari body permintaan HTTP sedangkan form GET data yang dimasukkan ke formulir akan dikirimkan ke server melalui URL sebagai bagian dari query String.
@@ -495,7 +496,7 @@ __Dokumentasi Akses URL XML by ID__
 __Dokumentasi Akses URL JSON by ID__
 ![JSON by ID](https://media.discordapp.net/attachments/1141216017255776401/1152987653298475058/image.png?width=1187&height=454)
 
---------------------------__TUGAS 3__--------------------------
+--------------------------__TUGAS 4__--------------------------
 
 1. Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
 Django `UserCreationForm` adalah sebuah `import` untuk formulir bawaan dari `django.contrib.auth.forms` yang memudahkan kita untuk membuat formulir register untuk user dalam aplikasi web. Dengan Django `UserCreationForm`, user baru bisa register dengan mudah di web tanpa harus menulis kode lagi dari awal.
@@ -801,7 +802,7 @@ def logout_user(request):
 ...
 ```
 
---------------------------__TUGAS 4__--------------------------
+--------------------------__TUGAS 5__--------------------------
 
 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya. <br>
 a. Element Selector <br>
@@ -1186,4 +1187,177 @@ def edit_item(request, id):
 </head>
 ```
 
+--------------------------__TUGAS 6__--------------------------
+
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.<br>
+`Synchronous programming` adalah suatu model pemrograman dimana tugas atau fungsi dieksekusi secara berurutan. Jadi misal terdapat 2 fungsi, artinya fungsi pertama harus selesai dijalankan sebelum fungsi kedua dapat dijalankan. `Synchronous programming` lebih mudah dipahami dan urutan eksekusi kodenya sangat penting. Jadi `Synchronous programming` biasanya digunakan dalam operasi basis data atau dalam aplikasi yang membutuhkan urutan langkah tertentu dengan baik. `Asynchronous programming` adalah model dimana tugas atau fungsi dapat dieksekusi secara bersamaan atau tidak secara berurutan. Ini berarti bahwa jika terdapat 2 fungsi, maka fungsi pertama dapat dijalankan sementara fungsi kedua sedang dijalankan, dan fungsi kedua dapat dijalankan sementara fungsi pertama masih dijalankan.
+
+Contoh kode synchronous dalam JavaScript:
+```
+function tanyaKabar(name) {
+    console.log('Apa kabar,', name);
+}
+function katakanHallo(name) {
+    console.log('Hallo,', name);
+}
+katakanHallo('Rafli');
+tanyaKabar('Tomi');
+```
+
+Contoh kode asynchronous dalam JavaScript: <br>
+
+```
+console.log("Start");
+// menjalankan setTimeout dalam callback function
+setTimeout(() => {
+  console.log("Finish");
+}, 3000);
+console.log("Next Task");
+```
+
+Jadi, Perbedaan utama antara asynchronous dan synchronous adalah bagaimana kode dieksekusi. Synchronous melakukan eksekusi secara berurutan, sementara asynchronous melakukan eksekusi secara bersamaan atau tidak berurutan. <br>
+ 
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma `event-driven programming`. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini. <br>
+Paradigma "event-driven programming" adalah cara pendekatan dalam pemrograman di mana program merespons peristiwa (events) yang terjadi secara asynchronous. Event dapat memicu tindakan tertentu atau fungsi yang disebut penangan event. Dalam konteks pengembangan web dengan teknologi AJAX, pemrograman event-driven memungkinkan pengembang untuk membuat antarmuka yang interaktif dan dinamis dengan merespons interaksi pengguna seperti klik, tekanan tombol, pengiriman formulir, atau bahkan permintaan jaringan. <br>
+
+Contoh penerapan pada tugas ini adalah implementasi tombol button addItem by ajax menggunakan konsep event driven dimana saat ada event scriptnya jalan. <br>
+
+3. Jelaskan penerapan `asynchronous programming` pada AJAX.<br>
+```
+AJAX memungkinkan halaman web untuk memperbarui data secara asinkronus dengan mengirimkan data ke peladen di balik layar. Hal tersebut berarti bahwa kita dapat memperbarui sebagian elemen data pada halaman tanpa harus me-reload halaman secara keseluruhan. AJAX memungkinkan aplikasi web untuk berkomunikasi dengan server dan melakukan pertukaran data di belakang layar.
+```
+
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan. <br>
+
+Dalam pemilihan antara Fetch API dan jQuery untuk AJAX: <br>
+
+* Fetch API: Lebih ringan, modern, menggunakan Promises, penanganan kesalahan yang lebih baik. Cocok untuk proyek baru tanpa perlu dukungan peramban lama.
+
+* jQuery: Kompatibel dengan berbagai peramban, abstraksi kuat, plugin ekosistem yang luas. Cocok untuk proyek yang memerlukan dukungan peramban lama atau jika Anda ingin kemudahan penggunaan.
+
+Pilihan tergantung pada kebutuhan dan preferensi proyek Anda. Jika kita ingin yang lebih ringan dan modern, pilih Fetch API. Jika kita memerlukan dukungan luas dan kemudahan penggunaan, pilih jQuery. <br>
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).<br>
+
+- [x] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+	- [x] AJAX GET
+		- [x] Ubahlah kode cards data item agar dapat mendukung AJAX GET.
+			* Tambahkan kode berikut di bagian dalam <script> </script> untuk cards data item dengan AJAX GET:
+			```
+			async function refreshItem() {
+        			document.getElementById("product_table").innerHTML = ""
+        			const items = await getItem()
+        			let htmlString = ""
+        			items.forEach((item) => {
+           				htmlString += `
+                				<div class="card">
+                    					<div class="card-body">
+                        					<h2 style="border-bottom: 5px solid #6499E9">${item.fields.name}</h2>
+                        					<div class="item-details">
+                            						<p style= "margin-bottom: 10px";>Description: ${item.fields.description}.</p>
+                            						<p style= "margin-bottom: 10px">Amount: ${item.fields.amount}</p>
+                            						<p>Rarity: ${item.fields.rarity}</p>
+                       						 </div>
+                       						 <a><button onclick="deleteItem(${item.pk})" type="submit">Hapus Item</button></a>
+                    					</div>
+                				</div>` 
+        			})
+        	
+        			document.getElementById("product_table").innerHTML = htmlString
+    			}		
+
+    			refreshItem()
+			```
+		- [x] Lakukan pengambilan task menggunakan AJAX GET.
+			* Pada `views.py` tambahkan kode berikut:
+			```
+			def get_item_json(request):
+    				item = Item.objects.filter(user = request.user)
+    				return HttpResponse(serializers.serialize('json', item))
+			```
+			* Pada `urlpatterns` pada `urls.py` tambahkan kode berikut:
+			```
+			path('get-item/', get_item_json, name='get_item_json'),
+			```
+			* Pada `main.html` di dalam <script> </script> tambahkan fungsi `getItem()`:
+			```
+			async function getItem() {
+        			return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    			}
+			```
+	- [x] AJAX POST
+		- [x] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
+			* Pada berkas `main.html` tambahkanlah kode berikut setelah tulisan Sesi terakhir login:
+			```
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 10px;">Add Product by AJAX</button>
+			```
+		- [x] Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.
+			* Buka berkas `views.py` pada direktori aplikasi `main`
+			* Buatlah fungsi `add_item_ajax` sesuai dengan kode dibawah ini
+			```
+			@csrf_exempt
+			def add_item_ajax(request):
+    				if request.method == 'POST':
+       					name = request.POST.get("name")
+        				amount = request.POST.get("amount")
+        				description = request.POST.get("description")
+        				rarity = request.POST.get("rarity")
+        				user = request.user
+
+        				new_item = Item(name=name, amount=amount, description=description, rarity = rarity, user=user)
+       					new_item.save()
+
+        				return HttpResponse(b"CREATED", status=201)
+				return HttpResponseNotFound()
+			```
+		- [x] Buatlah path `/create-ajax/` yang mengarah ke fungsi view yang baru kamu buat.
+			* Buka berkas `urls.py` lalu tambahkan kode berikut pada `urlpatterns`:
+			```
+    			path('create-ajax/', add_item_ajax, name='add_item_ajax')
+			```
+		- [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke path `/create-ajax/`.
+			* Pada berkas `main.html` tambahkan fungsi `addItem()` seperti kode dibawah ini:
+			```
+			function addItem() {
+    				fetch("{% url 'main:add_item_ajax' %}", {
+            			method: "POST",
+            			body: new FormData(document.querySelector('#form'))
+    			}).then(refreshItem)
+
+    			document.getElementById("form").reset()
+    			return false
+    			}
+
+    			document.getElementById("button_add").onclick = addItem
+			```
+		- [x] Lakukan *refresh* pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa *reload* halaman utama secara keseluruhan.
+			* Tambahkan kode berikut di bagian dalam <script> </script>
+			```
+			async function refreshItem() {
+        			document.getElementById("product_table").innerHTML = ""
+        			const items = await getItem()
+        			let htmlString = ""
+        			items.forEach((item) => {
+           				htmlString += `
+                				<div class="card">
+                    					<div class="card-body">
+                        					<h2 style="border-bottom: 5px solid #6499E9">${item.fields.name}</h2>
+                        					<div class="item-details">
+                            						<p style= "margin-bottom: 10px";>Description: ${item.fields.description}.</p>
+                            						<p style= "margin-bottom: 10px">Amount: ${item.fields.amount}</p>
+                            						<p>Rarity: ${item.fields.rarity}</p>
+                       						 </div>
+                       						 <a><button onclick="deleteItem(${item.pk})" type="submit">Hapus Item</button></a>
+                    					</div>
+                				</div>` 
+        			})
+        	
+        			document.getElementById("product_table").innerHTML = htmlString
+    			}		
+
+    			refreshItem()
+			```
+			
+	- [x] Melakukan perintah `collectstatic`.
+		* Jalan `python manage.py collectstatic` pada console.
 

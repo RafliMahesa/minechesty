@@ -1,11 +1,12 @@
 import datetime 
 
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib import messages  
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.core import serializers
 
@@ -134,5 +135,30 @@ def edit_item(request, id):
     context = {'form': form}
     return render(request, "edit_product.html", context)
 
+def get_item_json(request):
+    item = Item.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize('json', item))
 
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        rarity = request.POST.get("rarity")
+        user = request.user
+
+        new_item = Item(name=name, amount=amount, description=description, rarity = rarity, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_item_ajax(request, id):
+    if request.method == 'DELETE':
+        Item.objects.get(pk=id).delete()
+        return HttpResponse(b"DELETED", status = 201)
+    return HttpResponseNotFound()
     
