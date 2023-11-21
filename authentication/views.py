@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login as auth_login
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
+from django.core import serializers
+from main.models import Item
+
+user = None
 
 @csrf_exempt
 def register(request):
@@ -29,6 +33,7 @@ def register(request):
 
 @csrf_exempt
 def login(request):
+    global user
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
@@ -71,3 +76,7 @@ def logout(request):
         "message": "Logout gagal."
         }, status=401)
     
+
+def get_item_json(request):
+    item = Item.objects.filter(user = user)
+    return HttpResponse(serializers.serialize('json', item))
